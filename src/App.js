@@ -27,8 +27,8 @@ const App = () => {
           <div className='errorMessage'>{errorMessage}</div>
         ) : (
           cats.map((cat, id) => (
-            <h5 key={id}>{cat.text.replace('Cats', 'Dogs')}</h5>
-            // <h5 key={id}>{cat.text.replace('(?:^|\W)cat(?:$|\W)', 'Dogs')}</h5>
+            <h5 key={id}>{cat.text.replace(/cat/ig, 'dog')}</h5>
+           
           ))
         )}
       </div>
