@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
-// import '../App.css';
+import dog from './assets/dog.jpg';
+import styled, { keyframes } from 'styled-components';
+import { bounce } from 'react-animations';
+import './App.css';
+
 
 const CAT_API_URL = 'https://cat-fact.herokuapp.com/facts';
+const Bounce = styled.div`animation: 4s ${keyframes `${bounce}`} ease-in-out`;
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -18,16 +23,19 @@ const App = () => {
   }, []);
 
   return (
-    <div className='App'>
-      <h1 className='App-intro'>Dogs are better than cats</h1>
+    <div className='container'>
+      <Bounce><h1 className='title'>Dogs are better than cats</h1></Bounce>
       <div className='cats'>
+        <img src={dog} alt='girl with dog'></img>
         {loading && !errorMessage ? (
           <span>loading...</span>
         ) : errorMessage ? (
           <div className='errorMessage'>{errorMessage}</div>
         ) : (
           cats.map((cat, id) => (
-            <h5 key={id}>{cat.text.replace(/cat/ig, 'dog')}</h5>
+            // <h5 key={id}>{cat.text}</h5>
+            <h3 className='text' key={id}>{cat.text.replace(/cat/ig, 'dog')}</h3>
+              // <h3 className='text' key={id}>{cat.text.replace(/\bcat\b|\bCat\b|\bCats\b|\bcats\b/, 'dog')}</h3>
            
           ))
         )}
