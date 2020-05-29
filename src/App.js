@@ -4,9 +4,10 @@ import styled, { keyframes } from 'styled-components';
 import { bounce } from 'react-animations';
 import './App.css';
 
-
 const CAT_API_URL = 'https://cat-fact.herokuapp.com/facts';
-const Bounce = styled.div`animation: 4s ${keyframes `${bounce}`} ease-in-out`;
+const Bounce = styled.div`
+  animation: 4s ${keyframes`${bounce}`} ease-in-out;
+`;
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -24,7 +25,9 @@ const App = () => {
 
   return (
     <div className='container'>
-      <Bounce><h1 className='title'>Dogs are better than cats</h1></Bounce>
+      <Bounce>
+        <h1 className='title'>Dogs are better than cats</h1>
+      </Bounce>
       <div className='cats'>
         <img src={dog} alt='girl with dog'></img>
         {loading && !errorMessage ? (
@@ -33,10 +36,9 @@ const App = () => {
           <div className='errorMessage'>{errorMessage}</div>
         ) : (
           cats.map((cat, id) => (
-            // <h5 key={id}>{cat.text}</h5>
-            <h3 className='text' key={id}>{cat.text.replace(/cat/ig, 'dog')}</h3>
-              // <h3 className='text' key={id}>{cat.text.replace(/\bcat\b|\bCat\b|\bCats\b|\bcats\b/, 'dog')}</h3>
-           
+            <h3 className='text' key={id}>
+              {cat.text.replace(/\b[C-c]ats?’?s?\b/, 'dog')}
+            </h3>
           ))
         )}
       </div>
